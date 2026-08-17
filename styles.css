@@ -1,11 +1,61 @@
 :root {
+  color-scheme: light;
   --primary: #0f3d3e;
   --secondary: #c99a4a;
   --dark: #172026;
   --muted: #647076;
   --light: #f7f3eb;
   --white: #ffffff;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-soft: #f7f3eb;
+  --text: #172026;
+  --text-muted: #647076;
+  --heading: #0f3d3e;
+  --border: #d8dedc;
+  --input-bg: #ffffff;
+  --footer-bg: #101719;
   --shadow: 0 20px 45px rgba(15, 61, 62, 0.14);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --primary: #8ee6dd;
+    --secondary: #e1ad5d;
+    --dark: #edf7f5;
+    --muted: #aab8b7;
+    --light: #182428;
+    --bg: #0d1416;
+    --surface: #131d20;
+    --surface-soft: #182428;
+    --text: #edf7f5;
+    --text-muted: #aab8b7;
+    --heading: #8ee6dd;
+    --border: #304449;
+    --input-bg: #0f181b;
+    --footer-bg: #080d0f;
+    --shadow: 0 22px 48px rgba(0, 0, 0, 0.38);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --primary: #8ee6dd;
+  --secondary: #e1ad5d;
+  --dark: #edf7f5;
+  --muted: #aab8b7;
+  --light: #182428;
+  --bg: #0d1416;
+  --surface: #131d20;
+  --surface-soft: #182428;
+  --text: #edf7f5;
+  --text-muted: #aab8b7;
+  --heading: #8ee6dd;
+  --border: #304449;
+  --input-bg: #0f181b;
+  --footer-bg: #080d0f;
+  --shadow: 0 22px 48px rgba(0, 0, 0, 0.38);
 }
 
 * {
@@ -20,9 +70,10 @@ html {
 
 body {
   font-family: "Inter", sans-serif;
-  color: var(--dark);
-  background: var(--white);
+  color: var(--text);
+  background: var(--bg);
   line-height: 1.6;
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
 a {
@@ -65,6 +116,26 @@ a {
   font-weight: 600;
 }
 
+.theme-toggle {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.22);
+}
+
 .hero-content {
   width: min(850px, calc(100% - 40px));
   margin: auto;
@@ -99,7 +170,7 @@ h1 {
 
 h2 {
   font-size: clamp(2rem, 4vw, 3.2rem);
-  color: var(--primary);
+  color: var(--heading);
 }
 
 h3 {
@@ -191,7 +262,7 @@ h3 {
 .card {
   overflow: hidden;
   border-radius: 24px;
-  background: var(--white);
+  background: var(--surface);
   box-shadow: var(--shadow);
 }
 
@@ -225,7 +296,7 @@ h3 {
   width: 100%;
   max-width: none;
   padding: 92px max(20px, calc((100% - 1120px) / 2));
-  background: var(--light);
+  background: var(--surface-soft);
 }
 
 .service-grid {
@@ -237,7 +308,7 @@ h3 {
 .service-item {
   padding: 28px;
   border-radius: 22px;
-  background: var(--white);
+  background: var(--surface);
   box-shadow: 0 12px 30px rgba(23, 32, 38, 0.08);
 }
 
@@ -286,7 +357,7 @@ h3 {
   padding: 46px;
   text-align: center;
   border-radius: 32px;
-  background: var(--white);
+  background: var(--surface);
 }
 
 .contact-card p {
@@ -295,16 +366,16 @@ h3 {
 }
 
 .contact .btn-secondary {
-  color: var(--primary);
-  border-color: rgba(15, 61, 62, 0.2);
-  background: var(--light);
+  color: var(--heading);
+  border-color: var(--border);
+  background: var(--surface-soft);
 }
 
 .footer {
   padding: 28px 20px;
   text-align: center;
   color: var(--muted);
-  background: #101719;
+  background: var(--footer-bg);
 }
 
 .login-page {
@@ -325,18 +396,35 @@ h3 {
   width: min(460px, 100%);
   padding: 38px;
   border-radius: 28px;
-  background: var(--white);
+  background: var(--surface);
   box-shadow: var(--shadow);
+}
+
+.login-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
 }
 
 .login-logo {
   display: inline-block;
-  color: var(--primary);
-  margin-bottom: 22px;
+  color: var(--heading);
+}
+
+.theme-toggle-card {
+  color: var(--heading);
+  border-color: var(--border);
+  background: var(--surface-soft);
+}
+
+.theme-toggle-card:hover {
+  background: color-mix(in srgb, var(--surface-soft) 82%, var(--secondary));
 }
 
 .login-card h1 {
-  color: var(--primary);
+  color: var(--heading);
   font-size: clamp(2.2rem, 7vw, 3.3rem);
   margin-bottom: 14px;
 }
@@ -353,15 +441,17 @@ h3 {
 
 .login-card label {
   font-weight: 700;
-  color: var(--dark);
+  color: var(--text);
 }
 
 .login-card input {
   width: 100%;
   min-height: 48px;
   padding: 0 14px;
-  border: 1px solid #d8dedc;
+  border: 1px solid var(--border);
   border-radius: 14px;
+  color: var(--text);
+  background: var(--input-bg);
   font: inherit;
 }
 
@@ -391,7 +481,7 @@ h3 {
 
 .back-link {
   display: inline-block;
-  color: var(--primary);
+  color: var(--heading);
   font-weight: 700;
   margin-top: 22px;
 }
