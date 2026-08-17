@@ -8,11 +8,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <script src="theme.js" defer></script>
 </head>
 <body class="login-page">
   <main class="login-wrapper">
     <section class="login-card" aria-labelledby="login-title">
-      <a class="logo login-logo" href="index.html">Hotel Aurora</a>
+      <div class="login-topbar">
+        <a class="logo login-logo" href="index.html">Hotel Aurora</a>
+        <button class="theme-toggle theme-toggle-card" type="button" data-theme-toggle aria-pressed="false">🌙 Tema oscuro</button>
+      </div>
       <p class="eyebrow">Área de huéspedes</p>
       <h1 id="login-title">Iniciar sesión</h1>
       <p class="login-help">Usa el usuario de prueba para acceder: <strong>demo@hotelaurora.com</strong> / <strong>hotel123</strong></p>
