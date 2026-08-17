@@ -1,0 +1,13 @@
+{
+  "name": "hotel-aurora-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page informativa de hotel con login básico y pruebas Playwright.",
+  "scripts": {
+    "test": "PLAYWRIGHT_BROWSERS_PATH=.playwright-browsers playwright test",
+    "test:headed": "PLAYWRIGHT_BROWSERS_PATH=.playwright-browsers playwright test --headed"
+  },
+  "devDependencies": {
+    "@playwright/test": "latest"
+  }
+}
